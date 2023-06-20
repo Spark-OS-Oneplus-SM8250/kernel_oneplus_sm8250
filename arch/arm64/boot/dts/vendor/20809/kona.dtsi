@@ -352,7 +352,7 @@
 	};
 
 	chosen {
-		bootargs = "rcupdate.rcu_expedited=1 rcu_nocbs=0-7 kasan_multi_shot";
+		bootargs = "noirqdebug rcu_nocbs=0-7 kasan_multi_shot";
 	};
 
 	firmware: firmware {
@@ -374,11 +374,7 @@
 					dev = "/dev/block/platform/soc/1d84000.ufshc/by-name/vendor";
 					type = "ext4";
 					mnt_flags = "ro,barrier=1,discard";
-					//#ifndef OPLUS_BUG_STABILITY
-					//fsmgr_flags = "wait,slotselect,avb";
-					//#else
-					fsmgr_flags = "wait,avb";
-					//#endif /* OPLUS_BUG_STABILITY */
+					fsmgr_flags = "wait,slotselect";
 					status = "ok";
 				};
 			};
@@ -558,11 +554,6 @@
 		cont_splash_memory: cont_splash_region@9c000000 {
 			reg = <0x0 0x9c000000 0x0 0x02300000>;
 			label = "cont_splash_region";
-		};
-
-		disp_rdump_memory: disp_rdump_region@9c000000 {
-			reg = <0x0 0x9c000000 0x0 0x00800000>;
-			label = "disp_rdump_region";
 		};
 
 		dfps_data_memory: dfps_data_region@9e300000 {
